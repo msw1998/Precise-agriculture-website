@@ -53,7 +53,7 @@
 		var csrftoken = Cookies.get('csrftoken');
 		var http_call = function() {
                 $.ajax({
-                    url: "http://127.0.0.1:8000/app/",
+                    url: "http://192.168.0.35:8000/app/",
                     type: "POST",
                     data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
                     success: function (result) {

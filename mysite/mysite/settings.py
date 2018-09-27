@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['192.168.0.35','127.0.0.1']
 
 INSTALLED_APPS = [
     'personal',
+    'corsheaders',
     'bullshit',
     'fetching',
     'rest_framework',
@@ -44,6 +45,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
