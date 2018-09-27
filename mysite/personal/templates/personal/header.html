@@ -74,7 +74,7 @@
 			<div class="row">
 			  <div class="col-md-8 col-md-offset-2 intro-text">
 				<h1>Precision Agriculture</h1>
-				<p>Here comes the introduction</p>
+				<p>An IoT Based Project</p>
 				<a href="#about" class="btn btn-custom btn-lg page-scroll">More Info</a> </div>
 			</div>
 		  </div>
@@ -90,38 +90,30 @@
         <div class="about-text">
            <h2>About <span>Precision Agriculture</span></h2>
           <hr>
-          <p>Something</p>
+          <p>Precision Agriculture (PA) is the use of Information Technology (IT) in agriculture. The basic purpose to use Precision Agriculture is to have more yield, sustainability and productivity from the same field using IT. Different sensors are used to monitor the crop in every aspect like nutrients in soil, moisture, humidity, temperature of the crops and surrounding. In our project temperature and moisture of soil as well as sun exposure is being measured. The data gained is sent to the communication hub. Communication hub consists of two parts i.e. gateway and uplink. Gateway collects the data from all the sensors in the field at one point and uplink/upload to the database. Communication hub also dictates a water valve based on the real time soil readings which fulfil water needs of the plant whenever necessary. The Data gained in the database is then analyzed by Decision Support System (DSS) and steps are taken accordingly. Future predictions can be made based upon the historic data collected. Also If any area in the field is known to be affected based on the readings of sensors, remedial actions are taken in specified area which reduces time as well as resources.</p>
           <a href="#graphs" class="btn btn-custom btn-lg page-scroll">View data and graphs</a> </div>
       </div>
       <div class="col-xs-12 col-md-3">
-        <div class="about-media"> <img src="{% static 'personal/img/about-1.jpg' %}" alt="" style = 'height:100px; width:150px' > </div>
-        <div class="about-desc">
-          <h3>Components</h3>
-          <p>Details about something</p>
-        </div>
+        <div class="about-media"> <img src="{% static 'personal/img/about-3.jpg' %}" alt="" style = 'height:580px; width:610px' > </div>
+       
       </div>
-      <div class="col-xs-12 col-md-3">
-        <img src="{%static 'personal/img/about-2.jpg' %}" alt="" style = 'height:100px; width:150px' > </div>
-        <div class="about-desc">
-          <h3>Components2</h3>
-          <p>Details about components</p>
-        </div>
+      
       </div>
     </div>
   </div>
 
 
-<div id="graphs" class "text-center">
+<div id="graphs" class "text-center" style = "height:1400px; width:500px">
   <div class="container" >
     <div class="section-title text-center">
 
       <h1>Data</h1>
       <hr>
-      <p>Plotted data over the period of time</p>
+      <p>Real time graphs of field probe sensors. </p>
     </div>
-    <div class="row" style = "height:1400px; width:100%">
-      <div class="col-md-6 ">
-			<div class='container-fluid'>
+    <div class="row" >
+      <div class="col-md-9 ">
+			<div class='container-fluid' style = "left:50px">
 			<br><br>
 			   {% block content %}
 			   {% endblock %}	
@@ -133,27 +125,28 @@
   </div>
 </div>
 <!-- Contact Section -->
-<div id="contact" class="text-center">
+<div id="contact" class="text-center" style = "height:800px ;">
   <div class="container">
     <div class="section-title text-center">
       <h2>Contact Us</h2>
       <hr>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed dapibus leonec.</p>
+      <p>Have a specific project in mind? Or just looking for preliminary technical advice? </p>
+		<p>Get started today! Our experts are here to help. For a free consultation write to us at </p>
     </div>
     <div class="col-md-10 col-md-offset-1 contact-info">
       <div class="col-md-4">
         <h3>Address</h3>
         <hr>
         <div class="contact-item">
-          <p>4321 California St,</p>
-          <p>San Francisco, CA 12345</p>
+          <p>409-410, Clifton Centre, DC-1,Block 5,</p>
+          <p>Clifton, Karachi, Pakistan 75600</p>
         </div>
       </div>
       <div class="col-md-4">
         <h3>Working Hours</h3>
         <hr>
         <div class="contact-item">
-          <p>Monday-Saturday: 07:00 - 18:00</p>
+          <p>Monday-Saturday: 08:00 - 18:00</p>
           <p>Sunday: CLOSED</p>
         </div>
       </div>
@@ -161,39 +154,11 @@
         <h3>Contact Info</h3>
         <hr>
         <div class="contact-item">
-          <p>Phone: +1 123 456 1234</p>
-          <p>Email: info@company.com</p>
+          <p>Email: info@dcctech.com.pk</p>
         </div>
       </div>
     </div>
-    <div class="col-md-8 col-md-offset-2">
-      <h3>Leave us a message</h3>
-      <form name="sentMessage" id="contactForm" novalidate>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <input type="text" id="name" class="form-control" placeholder="Name" required="required">
-              <p class="help-block text-danger"></p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <input type="email" id="email" class="form-control" placeholder="Email" required="required">
-              <p class="help-block text-danger"></p>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <textarea name="message" id="message" class="form-control" rows="4" placeholder="Message" required></textarea>
-          <p class="help-block text-danger"></p>
-        </div>
-        <div id="success"></div>
-        <button type="submit" class="btn btn-custom btn-lg">Send Message</button>
-      </form>
-    </div>
-  </div>
-</div>
-
+   
 
 
 <script type="text/javascript" src="{%static 'personal/js/jquery.1.11.1.js' %}"></script> 
