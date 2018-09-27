@@ -1,0 +1,184 @@
+{% extends 'personal/header.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+	<link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet">
+	<div style = "font-family: 'Tangerine', serif; font-size: 20px; text-shadow: 4px 4px 4px #aaa; position:absolute; top: 120px; left:150px"> Last recorded Soil value : {{Soil_fetch}} °C</div>
+
+	<div style = "font-family: 'Tangerine', serif; font-size: 20px; text-shadow: 4px 4px 4px #aaa; position:relative; top: 80px; left:550px"> Last recorded Atmosphere value : {{Atm_fetch}} °C</div>
+	<div style = "font-family: 'Tangerine', serif; font-size: 20px; text-shadow: 4px 4px 4px #aaa; position:absolute; top: 650px; left:120px"> Last recorded Moisture value : {{Moisture_fetch}} %</div>
+	<div style = "font-family: 'Tangerine', serif; font-size: 20px; text-shadow: 4px 4px 4px #aaa; position:relative; top: 570px; left:560px"> Last recorded Humidty value : {{Humidity_fetch}} %</div>
+
+
+   <div  style="position:absolute; top:150px; left:50px;">
+        <canvas id="myChart" width= "400px" height= "400px" ></canvas>
+		    </div>
+	<div  style="position:absolute; top:150px; left:500px;">
+        <canvas id="myChart2" width= "400px" height= "400px" ></canvas>
+		    </div>
+	<div  style="position:absolute; top:700px; left:50px;">
+        <canvas id="myChart3" width= "400px" height= "400px" ></canvas>
+		    </div>
+	<div  style="position:absolute; top:700px; left:500px;">
+        <canvas id="myChart4" width= "400px" height= "400px" ></canvas>
+		    </div>
+	
+	
+	<script  type = "text/javascript">
+
+        var cache_label=0
+		var cache_data=0		
+		var ctx = document.getElementById("myChart");
+		var ctx2 = document.getElementById("myChart2");
+		var ctx3 = document.getElementById("myChart3");
+		var ctx4 = document.getElementById("myChart4");
+		var options = {
+				responsive: false,
+				maintainAspectRatio: true,
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero:true
+						}
+					}]
+				}
+			}
+		var csrftoken = Cookies.get('csrftoken');
+		var http_call = function() {
+                $.ajax({
+                    url: "http://127.0.0.1:8000/app/",
+                    type: "POST",
+                    data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+                    success: function (result) {
+						
+						var sets1 = {
+									labels: result.Time,
+									datasets: [{
+										label: 'Soil Temperature',
+										data: result.Soil_temp,
+										backgroundColor: [
+											'rgba(135, 121, 105,0)'
+
+										],
+										borderColor: [
+											'rgb(160, 136, 107)'
+										],
+										borderWidth: 1
+									}]
+								};
+						var sets2 =  {
+									labels: result.Time,
+									datasets: [{
+										label: 'Atm Temperature',
+										data: result.Atm_Temp,
+										backgroundColor: [
+											'rgb(153, 204, 140,0)'
+
+										],
+										borderColor: [
+											'rgb(30, 117, 37)'
+										],
+										borderWidth: 1
+									}]
+								};
+						 var sets3 = {
+									labels: result.Time,
+									datasets: [{
+										label: 'Moisture',
+										data: result.Moisture,
+										backgroundColor: [
+											'rgb(88, 182, 216,0)'
+
+										],
+										borderColor: [
+											'rgb(88, 182, 216)'
+										],
+										borderWidth: 1
+									}]
+								};
+						var sets4 = {
+									labels: result.Time,
+									datasets: [{
+										label: 'Humidity',
+										data: result.Humidity,
+										backgroundColor: [
+											'rgb(216, 160, 88, 0)'
+
+										],
+										borderColor: [
+											'rgb(216, 160, 88)'
+										],
+										borderWidth: 1
+									}]
+								};
+                        if (JSON.stringify(cache_data) !== JSON.stringify(result.Soil_temp) ||JSON.stringify(cache_label) !== JSON.stringify(result.Time)) {
+						
+							var myChart = new Chart(ctx, {
+								type: 'line',
+								data: sets1,
+								options: options
+							});
+							console.log('created')
+                            cache_data = result.Soil_temp
+                            cache_label = result.Time
+
+							var myChart2 = new Chart(ctx2, {
+								type: 'line',
+								data: sets2,
+								options: options
+							});
+							var myChart3 = new Chart(ctx3, {
+								type: 'line',
+								data: sets3,
+								options: options
+							});
+							
+							var myChart4 = new Chart(ctx4, {
+								type: 'line',
+								data: sets4,
+								options: options
+							});
+						}
+						if (cache_data ===0 && cache_label ===0)
+                        {
+                            cache_label = result.Time
+                            cache_data =result.Soil_temp
+                            console.log(cache_label)
+                            var myChart = new Chart(ctx, {
+								type: 'line',
+								data: sets1,
+								options: options
+							});
+							var myChart2 = new Chart(ctx2, {
+								type: 'line',
+								data: sets2,
+								options: options
+							});
+							var myChart3 = new Chart(ctx3, {
+								type: 'line',
+								data: sets3,
+								options: options
+							});
+							var myChart4 = new Chart(ctx4, {
+								type: 'line',
+								data: sets4,
+								options: options
+							});
+                        }
+						
+				},
+				error: function (error) {
+                        console.log(error)
+					},
+			});
+		}
+		http_call()
+        var interval = 1000 * 60 * 0.1; // where X is your every X minutes
+        setInterval(http_call, interval);
+        setInterval(http_call, interval);
+	</script>
+
+
+
+{% endblock content %}
