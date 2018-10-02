@@ -8,10 +8,10 @@ def Time():
                 db_config = {'password': '', 'host': 'localhost', 'user': 'root', 'database': 'dcc'}
                 conn = MySQLConnection(**db_config)
                 cursor = conn.cursor()
-                cursor.execute("SELECT c.Time FROM (SELECT c.* FROM pa c ORDER BY Time DESC LIMIT 5) c ORDER BY TIME ASC ")
+                cursor.execute("SELECT c.Time FROM (SELECT c.* FROM pa c ORDER BY Id DESC LIMIT 10) c ORDER BY Id ASC ")
 
                 rows = [item[0] for item in cursor.fetchall()]
-                print(rows)
+#                print(rows)
 
 
 
@@ -30,9 +30,9 @@ def Temp_soil():
                                 db_config = {'password': '', 'host': 'localhost', 'user': 'root', 'database': 'dcc'}
                                 conn = MySQLConnection(**db_config)
                                 cursor = conn.cursor()
-                                cursor.execute("SELECT c.Temp_soil FROM (SELECT c.* FROM pa c ORDER BY Time DESC LIMIT 5 ) c ORDER BY Time ASC")
+                                cursor.execute("SELECT c.Temp_soil FROM (SELECT c.* FROM pa c ORDER BY Id DESC LIMIT 10 ) c ORDER BY Id ASC")
                                 rows1 = [int(item[0]) for item in cursor.fetchall()]
-                                print(rows1)
+#                                print(rows1)
                         except Error as error:
                                 print(error)
                         return rows1
@@ -43,9 +43,9 @@ def Temp_atm():
                                 db_config = {'password': '', 'host': 'localhost', 'user': 'root', 'database': 'dcc'}
                                 conn = MySQLConnection(**db_config)
                                 cursor = conn.cursor()
-                                cursor.execute("SELECT c.Temp_atm FROM (SELECT c.* FROM pa c ORDER BY Time DESC LIMIT 5) c ORDER BY TIME ASC ")
+                                cursor.execute("SELECT c.Temp_atm FROM (SELECT c.* FROM pa c ORDER BY Id DESC LIMIT 10) c ORDER BY Id ASC ")
                                 rows2 = [int(item[0]) for item in cursor.fetchall()]
-                                print(rows2)
+   #                             print(rows2)
                         except Error as error:
                                 print(error)
                         return rows2
@@ -56,9 +56,9 @@ def Moisture():
 				db_config = {'password': '', 'host': 'localhost', 'user': 'root', 'database': 'dcc'}
 				conn = MySQLConnection(**db_config)
 				cursor = conn.cursor()
-				cursor.execute("SELECT c.Moisture FROM (SELECT c.* FROM pa c ORDER BY Time DESC LIMIT 5) c ORDER BY TIME ASC ")
+				cursor.execute("SELECT c.Moisture FROM (SELECT c.* FROM pa c ORDER BY Id DESC LIMIT 10) c ORDER BY Id ASC ")
 				rows3 = [int(item[0]) for item in cursor.fetchall()]
-				print(rows3)
+#				print(rows3)
 			except Error as error:
 				print(error)
 			return rows3
@@ -69,9 +69,9 @@ def Humidity():
 				db_config = {'password': '', 'host': 'localhost', 'user': 'root', 'database': 'dcc'}
 				conn = MySQLConnection(**db_config)
 				cursor = conn.cursor()
-				cursor.execute("SELECT c.Humidity FROM (SELECT c.* FROM pa c ORDER BY Time DESC LIMIT 5) c ORDER BY TIME ASC ")
+				cursor.execute("SELECT c.Humidity FROM (SELECT c.* FROM pa c ORDER BY Id DESC LIMIT 10) c ORDER BY Id ASC ")
 				rows4 = [int(item[0]) for item in cursor.fetchall()]
-				print(rows4)
+#				print(rows4)
 			except Error as error:
 				print(error)
 			return rows4
@@ -84,11 +84,11 @@ def Fetch1():
                 db_config = {'password': '', 'host': 'localhost', 'user': 'root', 'database': 'dcc'}
                 conn = MySQLConnection(**db_config)
                 cursor = conn.cursor()
-                cursor.execute("SELECT Temp_soil FROM pa ORDER BY Time DESC")
+                cursor.execute("SELECT Temp_soil FROM pa ORDER BY Id DESC")
                 row5 = [int(item[0]) for item in cursor.fetchall()]
 
 
-                print(row5)
+ #               print(row5)
         except Error as error:
                 print(error)
         return row5[0]
@@ -100,10 +100,10 @@ def Fetch2():
                 db_config = {'password': '', 'host': 'localhost', 'user': 'root', 'database': 'dcc'}
                 conn = MySQLConnection(**db_config)
                 cursor = conn.cursor()
-                cursor.execute("SELECT Temp_atm FROM pa ORDER BY Time DESC")
+                cursor.execute("SELECT Temp_atm FROM pa ORDER BY Id DESC")
                 row6 = [int(item[0]) for item in cursor.fetchall()]
 
-                print(row6)
+ #               print(row6)
         except Error as error:
                 print(error)
         return row6[0]
@@ -115,10 +115,10 @@ def Fetch3():
                 db_config = {'password': '', 'host': 'localhost', 'user': 'root', 'database': 'dcc'}
                 conn = MySQLConnection(**db_config)
                 cursor = conn.cursor()
-                cursor.execute("SELECT Moisture FROM pa ORDER BY Time DESC")
+                cursor.execute("SELECT Moisture FROM pa ORDER BY Id DESC")
                 row7 = [int(item[0]) for item in cursor.fetchall()]
 
-                print(row7)
+  #              print(row7)
         except Error as error:
                 print(error)
         return row7[0]
@@ -131,10 +131,10 @@ def Fetch4():
                 db_config = {'password': '', 'host': 'localhost', 'user': 'root', 'database': 'dcc'}
                 conn = MySQLConnection(**db_config)
                 cursor = conn.cursor()
-                cursor.execute("SELECT Humidity FROM pa ORDER BY Time DESC")
+                cursor.execute("SELECT Humidity FROM pa ORDER BY Id DESC")
                 row8 = [int(item[0]) for item in cursor.fetchall()]
 
-                print(row8)
+   #             print(row8)
         except Error as error:
                 print(error)
         return row8[0]
@@ -147,4 +147,3 @@ if __name__ == '__main__':
 	Temp_atm()
 	Moisture()
 	Humidity()
-	

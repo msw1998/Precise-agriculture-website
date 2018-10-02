@@ -4,15 +4,15 @@
 {% block content %}
 
 	<link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet">
-	<div style = "font-family: 'Tangerine', serif; font-size: 20px; text-shadow: 4px 4px 4px #aaa; position:absolute; top: 80px; left:220px"> Last recorded Soil value : {{Soil_fetch}} °C</div>
+	<p id = "demo" style = "font-family: 'Tangerine', serif; font-size: 20px; text-shadow: 4px 4px 4px #aaa; position:absolute; top: 80px; left:220px"></p>
 	<div style = "font-family: 'Tangerine', serif; font-size: 20px; text-shadow: 4px 4px 4px #aaa; position:absolute; top: 495px; left:315px"> Time(ms)</div>
-	<div style = "font-family: 'Tangerine', serif; font-size: 20px; text-shadow: 4px 4px 4px #aaa; position:relative; top: 40px; left:620px"> Last recorded Atmosphere value : {{Atm_fetch}} °C</div>
+	<p id = "demo2" style = "font-family: 'Tangerine', serif; font-size: 20px; text-shadow: 4px 4px 4px #aaa; position:relative; top: 40px; left:620px"><p>
 	<div style = "font-family: 'Tangerine', serif; font-size: 20px; text-shadow: 4px 4px 4px #aaa; position:absolute; top: 495px; left:765px"> Time(ms)</div>
 
-	<div style = "font-family: 'Tangerine', serif; font-size: 20px; text-shadow: 4px 4px 4px #aaa; position:absolute; top: 660px; left:220px"> Last recorded Moisture value : {{Moisture_fetch}} %</div>
+	<p id = "demo3"  style = "font-family: 'Tangerine', serif; font-size: 20px; text-shadow: 4px 4px 4px #aaa; position:absolute; top: 660px; left:220px"> </p>
 	<div style = "font-family: 'Tangerine', serif; font-size: 20px; text-shadow: 4px 4px 4px #aaa; position:absolute; top: 1076px; left:315px"> Time(ms)</div>
 
-	<div style = "font-family: 'Tangerine', serif; font-size: 20px; text-shadow: 4px 4px 4px #aaa; position:relative; top: 590px; left:620px"> Last recorded Humidty value : {{Humidity_fetch}} %</div>
+	<p id = "demo4" style = "font-family: 'Tangerine', serif; font-size: 20px; text-shadow: 4px 4px 4px #aaa; position:relative; top: 580px; left:620px"> </p>
 	<div style = "font-family: 'Tangerine', serif; font-size: 20px; text-shadow: 4px 4px 4px #aaa; position:absolute; top: 1076px; left:765px"> Time(ms)</div>
 
 
@@ -57,6 +57,12 @@
                     type: "POST",
                     data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
                     success: function (result) {
+						document.getElementById("demo").innerHTML = "Last recorded Soil Temperature : " + result.Soil_fetch + " °C";
+						document.getElementById("demo2").innerHTML = "Last recorded Atmosphere Temperature : " + result.Atm_fetch + " °C";
+						document.getElementById("demo3").innerHTML = "Last recorded Moisture Value : " + result.Moisture_fetch + " %";
+						document.getElementById("demo4").innerHTML = "Last recorded Humidity Value : " + result.Humidity_fetch + " %";
+
+						
 						
 						var sets1 = {
 									labels: result.Time,
